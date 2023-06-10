@@ -17,9 +17,9 @@ class BlogController extends Controller
         ]);
     }
 
-    public function show($slug)
+    public function show(Blog $blog)
     {
-        $blog = Blog::find($slug);
+        // $blog = Blog::findOrFail($blog);
 
         return view('blog_detail', [
             'title_page' => 'blog detail',
