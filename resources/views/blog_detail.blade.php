@@ -1,12 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1>Blog Detail</h1>
+    <h1 class="mb-3">Blog Detail</h1>
 
     <article class="mb-3">
-        <a href="/blogs/{{ $blog['slug'] }}">
-            <h2>{{ $blog['title'] }}</h2>
-        </a>
+        <h2>{{ $blog['title'] }}</h2>
         <h5>By : {{ $blog['author'] }}</h5>
         <p>{!! $blog['body'] !!}</p>
     </article>
