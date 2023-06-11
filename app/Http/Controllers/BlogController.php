@@ -11,9 +11,10 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::with(['author', 'category'])->latest()->get();
+        $blogs = Blog::latest()->get();
 
         return view('blogs', [
+            'page_active' => 'blogs',
             'title_page' => 'Blogs',
             'blogs' => $blogs
         ]);
@@ -22,7 +23,8 @@ class BlogController extends Controller
     public function show(Blog $blog)
     {
         return view('blog_detail', [
-            'title_page' => 'blog detail',
+            'page_active' => 'blogs',
+            'title_page' => 'Blog detail',
             'blog' => $blog,
         ]);
     }
@@ -30,17 +32,19 @@ class BlogController extends Controller
     public function show_category(Category $category)
     {
         return view('blogs', [
+            'page_active' => 'blogs',
             'title_page' => "Blogs by category : $category->name",
             'category' => $category,
-            'blogs' => $category->blog->load('category', 'author'),
+            'blogs' => $category->blog,
         ]);
     }
 
     public function show_author(User $author)
     {
         return view('blogs', [
+            'page_active' => 'blogs',
             'title_page' => "Blogs by author : $author->name",
-            'blogs' => $author->blog->load('category', 'author'),
+            'blogs' => $author->blog,
         ]);
     }
 }

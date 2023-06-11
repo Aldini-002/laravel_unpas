@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">BLOGS_002</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -8,17 +8,17 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ $title_page === 'home' ? 'active' : '' }}" aria-current="page"
+                    <a class="nav-link {{ $page_active === 'home' ? 'active' : '' }}" aria-current="page"
                         href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title_page === 'about' ? 'active' : '' }}" href="/about">About</a>
+                    <a class="nav-link {{ $page_active === 'about' ? 'active' : '' }}" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title_page === 'Blogs' ? 'active' : '' }}" href="/blogs">Blogs</a>
+                    <a class="nav-link {{ $page_active === 'blogs' ? 'active' : '' }}" href="/blogs">Blogs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title_page === 'categories' ? 'active' : '' }}"
+                    <a class="nav-link {{ $page_active === 'categories' ? 'active' : '' }}"
                         href="/categories">Categories</a>
                 </li>
             </ul>

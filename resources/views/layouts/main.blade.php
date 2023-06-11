@@ -19,7 +19,7 @@
     {{-- ::navbar --}}
 
     {{-- ::content --}}
-    <div class="container mt-4">
+    <div class="container mt-5 pt-4">
         @yield('content')
     </div>
     {{-- /::content --}}

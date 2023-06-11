@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', [
+        'page_active' => 'home',
         'title_page' => 'home'
     ]);
 });
@@ -27,6 +28,7 @@ Route::get('/', function () {
 Route::get('/about', function () {
     $user = User::findOrFail(1);
     return view('about', [
+        'page_active' => 'about',
         'title_page' => 'about',
         'user' => $user,
         'image' => 'me.jpg'
@@ -35,8 +37,8 @@ Route::get('/about', function () {
 
 // blog
 Route::get('/blogs', [BlogController::class, 'index']);
-Route::get('/blogs/{blog:uuid}', [BlogController::class, 'show']);
-Route::get('/category/{category:uuid}', [BlogController::class, 'show_category']);
+Route::get('/blog/{blog:uuid}', [BlogController::class, 'show']);
+Route::get('/blogs/category/{category:uuid}', [BlogController::class, 'show_category']);
 Route::get('/blogs/author/{author:uuid}', [BlogController::class, 'show_author']);
 
 // category

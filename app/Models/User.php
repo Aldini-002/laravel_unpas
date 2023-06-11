@@ -33,6 +33,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    // protected $with = ['category', 'blog'];
 
     /**
      * The attributes that should be cast.
