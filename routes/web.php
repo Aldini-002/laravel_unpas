@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 
@@ -24,10 +25,10 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
+    $user = User::findOrFail(1);
     return view('about', [
         'title_page' => 'about',
-        'name' => 'Aldini_002',
-        'email' => '002aldini@gmail.com',
+        'user' => $user,
         'image' => 'me.jpg'
     ]);
 });

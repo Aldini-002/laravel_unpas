@@ -14,6 +14,7 @@ class BlogSeeder extends Seeder
     public function run(): void
     {
         Blog::factory()->create([
+            'id_user' => 1,
             'id_category' => 1,
             'title' => 'Judul blog pertama',
             'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio enim, assumenda similique consequatur eius quam laborum delectus dolore saepe placeat.',
@@ -21,6 +22,7 @@ class BlogSeeder extends Seeder
         ]);
 
         Blog::factory()->create([
+            'id_user' => 2,
             'id_category' => 1,
             'title' => 'Judul blog kedua',
             'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio enim, assumenda similique consequatur eius quam laborum delectus dolore saepe placeat.',
@@ -28,6 +30,7 @@ class BlogSeeder extends Seeder
         ]);
 
         Blog::factory()->create([
+            'id_user' => 2,
             'id_category' => 2,
             'title' => 'Judul blog ketiga',
             'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio enim, assumenda similique consequatur eius quam laborum delectus dolore saepe placeat.',
@@ -35,6 +38,7 @@ class BlogSeeder extends Seeder
         ]);
 
         Blog::factory()->create([
+            'id_user' => 3,
             'id_category' => 3,
             'title' => 'Judul blog keempat',
             'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio enim, assumenda similique consequatur eius quam laborum delectus dolore saepe placeat.',

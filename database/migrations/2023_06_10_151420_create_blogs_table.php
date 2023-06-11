@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->default(DB::raw('(UUID())'))->unique();
+            $table->foreignId('id_user');
             $table->foreignId('id_category');
             $table->string('title');
             $table->text('excerpt');
