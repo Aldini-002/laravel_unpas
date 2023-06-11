@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -22,11 +23,12 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin'
         ]);
 
-        \App\Models\User::factory(3)->create();
+        User::factory(2)->create();
+
+        Blog::factory(20)->create();
 
         $this->call([
             CategorySeeder::class,
-            BlogSeeder::class
         ]);
     }
 }

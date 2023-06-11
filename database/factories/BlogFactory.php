@@ -17,7 +17,11 @@ class BlogFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id_category' => mt_rand(1, 3),
+            'id_author' => mt_rand(1, 3),
+            'title' => fake()->sentence(mt_rand(2, 5)),
+            'excerpt' => fake()->paragraph(),
+            'body' => fake()->paragraph(mt_rand(5, 10))
         ];
     }
 }

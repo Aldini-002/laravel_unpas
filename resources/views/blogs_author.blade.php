@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1 class="mb-5">Blogs</h1>
+    <h1 class="mb-5">Blogs {{ $user->name }}</h1>
 
     @foreach ($blogs as $blog)
         <article class="mb-5 pb-4 border-bottom">
