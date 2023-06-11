@@ -15,11 +15,10 @@
                     <a class="nav-link {{ $title_page === 'about' ? 'active' : '' }}" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title_page === 'blogs' || $title_page === 'blog detail' || $title_page === 'blogs author' ? 'active' : '' }}"
-                        href="/blogs">Blogs</a>
+                    <a class="nav-link {{ $title_page === 'Blogs' ? 'active' : '' }}" href="/blogs">Blogs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title_page === 'categories' || $title_page === 'category detail' ? 'active' : '' }}"
+                    <a class="nav-link {{ $title_page === 'categories' ? 'active' : '' }}"
                         href="/categories">Categories</a>
                 </li>
             </ul>

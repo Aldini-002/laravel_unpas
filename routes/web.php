@@ -36,8 +36,8 @@ Route::get('/about', function () {
 // blog
 Route::get('/blogs', [BlogController::class, 'index']);
 Route::get('/blogs/{blog:uuid}', [BlogController::class, 'show']);
+Route::get('/category/{category:uuid}', [BlogController::class, 'show_category']);
 Route::get('/blogs/author/{author:uuid}', [BlogController::class, 'show_author']);
 
 // category
 Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/category/{category:uuid}', [CategoryController::class, 'show']);

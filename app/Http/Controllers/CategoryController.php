@@ -14,13 +14,4 @@ class CategoryController extends Controller
             'categories' => Category::all(),
         ]);
     }
-
-    public function show(Category $category)
-    {
-        return view('category_detail', [
-            'title_page' => 'category detail',
-            'category' => $category,
-            'blogs' => $category->blog
-        ]);
-    }
 }
