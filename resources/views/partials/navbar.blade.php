@@ -18,6 +18,10 @@
                     <a class="nav-link {{ $title_page === 'blogs' || $title_page === 'blog detail' ? 'active' : '' }}"
                         href="/blogs">Blogs</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $title_page === 'categories' || $title_page === 'category detail' ? 'active' : '' }}"
+                        href="/categories">Categories</a>
+                </li>
             </ul>
         </div>
     </div>

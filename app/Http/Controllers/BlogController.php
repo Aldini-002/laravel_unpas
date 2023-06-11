@@ -19,8 +19,6 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
-        // $blog = Blog::findOrFail($blog);
-
         return view('blog_detail', [
             'title_page' => 'blog detail',
             'blog' => $blog,

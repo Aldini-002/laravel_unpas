@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Models\Blog;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +32,10 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('blogs', [BlogController::class, 'index']);
-Route::get('blogs/{blog:slug}', [BlogController::class, 'show']);
+// blog
+Route::get('/blogs', [BlogController::class, 'index']);
+Route::get('/blogs/{blog:uuid}', [BlogController::class, 'show']);
+
+// category
+Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/category/{category:uuid}', [CategoryController::class, 'show']);
