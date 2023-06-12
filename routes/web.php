@@ -1,8 +1,7 @@
 <?php
 
-use App\Models\Blog;
+use App\Http\Controllers\AdminBlogController;
 use App\Models\User;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
@@ -26,6 +25,13 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/dashboard', function () {
+    return view('admin.dashboard', [
+        'page_active' => 'dashboard',
+        'title_page' => 'dashboard'
+    ]);
+});
+
 Route::get('/about', function () {
     $user = User::findOrFail(1);
     return view('about', [
@@ -37,14 +43,24 @@ Route::get('/about', function () {
 });
 
 // blog
-Route::get('/blogs', [BlogController::class, 'index']);
-Route::get('/blog/{blog:uuid}', [BlogController::class, 'show']);
-Route::get('/blogs/category/{category:uuid}', [BlogController::class, 'show_category']);
-Route::get('/blogs/author/{author:uuid}', [BlogController::class, 'show_author']);
+Route::get('/blogs', [BlogController::class, 'index'])->middleware('auth');
+Route::get('/blog/{blog:uuid}', [BlogController::class, 'show'])->middleware('auth');
+Route::get('/blogs/category/{category:uuid}', [BlogController::class, 'show_category'])->middleware('auth');
+Route::get('/blogs/author/{author:uuid}', [BlogController::class, 'show_author'])->middleware('auth');
+
+// blog admin
+// Route::resource('/admin/blogs', AdminBlogController::class)->middleware('auth');
+Route::controller(AdminBlogController::class)->group(function () {
+    Route::get('/admin/blogs/{blog:uuid}', 'show')->middleware('auth');
+    Route::get('/admin/blogs', 'index')->middleware('auth');
+});
 
 // category
-Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories', [CategoryController::class, 'index'])->middleware('auth');
 
 // auth
-Route::get('/signin', [AuthController::class, 'signin']);
-Route::get('/signup', [AuthController::class, 'signup']);
+Route::get('/signin', [AuthController::class, 'signin'])->middleware('guest');
+Route::get('/signup', [AuthController::class, 'signup'])->middleware('guest');
+Route::post('/signin', [AuthController::class, 'signinPost']);
+Route::post('/signup', [AuthController::class, 'signupPost']);
+Route::post('/signout', [AuthController::class, 'signout'])->middleware('auth');

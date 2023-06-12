@@ -14,21 +14,45 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $page_active === 'about' ? 'active' : '' }}" href="/about">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $page_active === 'blogs' ? 'active' : '' }}" href="/blogs">Blogs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $page_active === 'categories' ? 'active' : '' }}"
-                        href="/categories">Categories</a>
-                </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link {{ $page_active === 'blogs' ? 'active' : '' }}" href="/blogs">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ $page_active === 'categories' ? 'active' : '' }}"
+                            href="/categories">Categories</a>
+                    </li>
+                @endauth
             </ul>
+
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link {{ $page_active === 'signin' ? 'active' : '' }}" href="/signin">Sign in</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $page_active === 'signup' ? 'active' : '' }}" href="/signup">Sign up</a>
-                </li>
+                @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-dark" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Hello, {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Profiel</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="/signout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">Sign out</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link {{ $page_active === 'signin' ? 'active' : '' }}" href="/signin">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ $page_active === 'signup' ? 'active' : '' }}" href="/signup">Sign up</a>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>
