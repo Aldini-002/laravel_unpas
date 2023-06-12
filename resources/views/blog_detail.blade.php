@@ -7,10 +7,10 @@
                 <h2>{{ $blog->title }}</h2>
                 <p>
                     <small class="text-muted">
-                        By. <a href="/blogs/author/{{ $blog->author->uuid }}"
+                        By. <a href="/blogs?author={{ $blog->author->uuid }}"
                             class="text-decoration-none">{{ $blog->author->name }}</a>
                         in
-                        <a href="/blogs/category/{{ $blog->category->uuid }}"
+                        <a href="/blogs?category={{ $blog->category->uuid }}"
                             class="text-decoration-none">{{ $blog->category->name }}</a>
                     </small>
                 </p>

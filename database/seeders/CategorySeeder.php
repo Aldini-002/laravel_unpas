@@ -14,13 +14,19 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::factory()->create([
-            'name' => 'Backend Developer',
+            'name' => 'Pemrograman',
         ]);
         Category::factory()->create([
-            'name' => 'Frontend Developer',
+            'name' => 'Graph Design',
         ]);
         Category::factory()->create([
-            'name' => 'UI/UX Design',
+            'name' => 'Personal',
+        ]);
+        Category::factory()->create([
+            'name' => 'Nature',
+        ]);
+        Category::factory()->create([
+            'name' => 'Comedy',
         ]);
     }
 }

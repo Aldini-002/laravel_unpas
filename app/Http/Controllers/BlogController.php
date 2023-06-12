@@ -11,12 +11,24 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::latest()->get();
+        $title_page = '';
+
+        if (request('category')) {
+            $category = Category::firstWhere('uuid', request('category'));
+            $title_page = ' in ' . $category->name;
+        }
+
+        if (request('author')) {
+            $author = User::firstWhere('uuid', request('author'));
+            $title_page = ' by ' . $author->name;
+        }
+
+        $blogs = Blog::filter(request(['search', 'category', 'author']))->latest()->paginate(9)->withQueryString();
 
         return view('blogs', [
             'page_active' => 'blogs',
-            'title_page' => 'Blogs',
-            'blogs' => $blogs
+            'title_page' => 'All Blogs' . $title_page,
+            'blogs' => $blogs,
         ]);
     }
 
@@ -26,25 +38,6 @@ class BlogController extends Controller
             'page_active' => 'blogs',
             'title_page' => 'Blog detail',
             'blog' => $blog,
-        ]);
-    }
-
-    public function show_category(Category $category)
-    {
-        return view('blogs', [
-            'page_active' => 'blogs',
-            'title_page' => "Blogs by category : $category->name",
-            'category' => $category,
-            'blogs' => $category->blog,
-        ]);
-    }
-
-    public function show_author(User $author)
-    {
-        return view('blogs', [
-            'page_active' => 'blogs',
-            'title_page' => "Blogs by author : $author->name",
-            'blogs' => $author->blog,
         ]);
     }
 }

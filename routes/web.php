@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CategoryController;
 use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,7 @@ Route::get('/blogs/author/{author:uuid}', [BlogController::class, 'show_author']
 
 // category
 Route::get('/categories', [CategoryController::class, 'index']);
+
+// auth
+Route::get('/signin', [AuthController::class, 'signin']);
+Route::get('/signup', [AuthController::class, 'signup']);
