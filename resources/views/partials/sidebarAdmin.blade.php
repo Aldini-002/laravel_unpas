@@ -11,6 +11,13 @@
                     Blogs
                 </a>
             </li>
+            @can('admin')
+                <li class="nav-item ">
+                    <a class="nav-link {{ $page_active === 'admin_category' ? 'active' : '' }}" href="/admin/categories">
+                        Categories
+                    </a>
+                </li>
+            @endcan
         </ul>
     </div>
 </nav>

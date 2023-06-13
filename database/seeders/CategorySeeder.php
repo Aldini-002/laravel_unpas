@@ -15,18 +15,23 @@ class CategorySeeder extends Seeder
     {
         Category::factory()->create([
             'name' => 'Pemrograman',
+            'slug' => 'pemrograman',
         ]);
         Category::factory()->create([
             'name' => 'Graph Design',
+            'slug' => 'graph-design',
         ]);
         Category::factory()->create([
             'name' => 'Personal',
+            'slug' => 'personal',
         ]);
         Category::factory()->create([
             'name' => 'Nature',
+            'slug' => 'nature',
         ]);
         Category::factory()->create([
             'name' => 'Comedy',
+            'slug' => 'comedy',
         ]);
     }
 }

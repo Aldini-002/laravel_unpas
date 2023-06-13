@@ -14,7 +14,7 @@ class BlogController extends Controller
         $title_page = '';
 
         if (request('category')) {
-            $category = Category::firstWhere('uuid', request('category'));
+            $category = Category::firstWhere('slug', request('category'));
             $title_page = ' in ' . $category->name;
         }
 

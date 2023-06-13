@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminBlogController;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminBlogController;
+use App\Http\Controllers\GenerateSlugController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,15 +47,17 @@ Route::get('/about', function () {
 
 // blog
 Route::get('/blogs', [BlogController::class, 'index'])->middleware('auth');
-Route::get('/blog/{blog:uuid}', [BlogController::class, 'show'])->middleware('auth');
-Route::get('/blogs/category/{category:uuid}', [BlogController::class, 'show_category'])->middleware('auth');
-Route::get('/blogs/author/{author:uuid}', [BlogController::class, 'show_author'])->middleware('auth');
+Route::get('/blog/{blog:slug}', [BlogController::class, 'show'])->middleware('auth');
+Route::get('/blogs/category/{category:slug}', [BlogController::class, 'show_category'])->middleware('auth');
+Route::get('/blogs/author/{author:slug}', [BlogController::class, 'show_author'])->middleware('auth');
 
 // blog admin
-// Route::resource('/admin/blogs', AdminBlogController::class)->middleware('auth');
+Route::resource('/admin/blogs', AdminBlogController::class, ['except' => ['blogs.show', 'blogs.edit', 'blogs.destroy', 'blogs.update']])->middleware('auth');
 Route::controller(AdminBlogController::class)->group(function () {
-    Route::get('/admin/blogs/{blog:uuid}', 'show')->middleware('auth');
-    Route::get('/admin/blogs', 'index')->middleware('auth');
+    Route::get('/admin/blogs/{blog:slug}', 'show')->middleware('auth');
+    Route::get('/admin/blogs/edit/{blog:slug}', 'edit')->middleware('auth');
+    Route::put('/admin/blogs/{blog:slug}', 'update')->middleware('auth');
+    Route::delete('/admin/blogs/{blog:slug}', 'destroy')->middleware('auth');
 });
 
 // category
@@ -64,3 +69,12 @@ Route::get('/signup', [AuthController::class, 'signup'])->middleware('guest');
 Route::post('/signin', [AuthController::class, 'signinPost']);
 Route::post('/signup', [AuthController::class, 'signupPost']);
 Route::post('/signout', [AuthController::class, 'signout'])->middleware('auth');
+
+// slug
+Route::get('/generateSlug', [GenerateSlugController::class, 'generateSlug'])->middleware('auth');
+
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('/admin/categories', 'adminIndex')->middleware('auth');
+    Route::get('/admin/categories/{category:slug}', 'show');
+    Route::post('/admin/categories', 'store');
+});

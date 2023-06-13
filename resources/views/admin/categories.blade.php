@@ -18,7 +18,7 @@
     @endif
 
     <div class="mb-3">
-        <a href="/admin/blogs/create" class="btn btn-dark">Tambah Blog</a>
+        <a href="/admin/categories/create" class="btn btn-dark">Tambah Category</a>
     </div>
 
     <div class="table-responsive">
@@ -27,38 +27,29 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Category</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($blogs as $blog)
+                @foreach ($categories as $category)
                     <tr>
-                        @if (request('page') > 1)
-                            <td>{{ $loop->iteration + (request('page') - 1) * 10 }}</td>
-                        @else
-                            <td>{{ $loop->iteration }}</td>
-                        @endif
-                        <td>{{ $blog->title }}</td>
-                        <td>{{ $blog->category->name }}</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $category->name }}</td>
                         <td>
-                            <a href="/admin/blogs/{{ $blog->slug }}" class="btn btn-sm btn-info"><span
+                            <a href="/admin/categories/{{ $category->slug }}" class="btn btn-sm btn-info"><span
                                     data-feather="eye"></span></a>
-                            <a href="/admin/blogs/edit/{{ $blog->slug }}" class="btn btn-sm btn-warning"><span
+                            <a href="/admin/categories/edit/{{ $category->slug }}" class="btn btn-sm btn-warning"><span
                                     data-feather="edit"></span></a>
-                            <form action="/admin/blogs/{{ $blog->slug }}" method="post" class="d-inline">
+                            <form action="/admin/categories/{{ $category->slug }}" method="post" class="d-inline">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-sm btn-danger border-0"
-                                    onclick="return confirm('Anda akan menghapus blog!')"><span
+                                    onclick="return confirm('Anda akan menghapus category!')"><span
                                         data-feather="trash-2"></span></button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
-                <tr>
-                    <td colspan="4">{{ $blogs->links() }}</td>
-                </tr>
             </tbody>
         </table>
     </div>

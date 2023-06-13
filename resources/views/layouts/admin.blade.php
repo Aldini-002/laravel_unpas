@@ -16,19 +16,31 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
+
+    {{-- trix css --}}
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none
+        }
+    </style>
 </head>
 
 <body>
 
     @include('partials.navAdmin')
 
-    <div class="container-fluid">
-        <div class="row">
+    {{-- <div class="container-fluid">
+        <div class="row"> --}}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="container my-3">
             @include('partials.sidebarAdmin')
 
             @yield('content')
         </div>
-    </div>
+    </main>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
